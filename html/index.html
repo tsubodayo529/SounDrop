@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>SounDrop</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* h1 {
+            padding: 0;
+            margin: 0;
+            font-size: 50%;
+        } */
+    </style>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+
+    <!-- MAP[START] -->
+<div id="title_wrap">
+    <div class="title"><h1>SounDrop♪</h1></div>
+        <!-- <div id="geocode">geocode:data</div> -->
+
+</div>
+    <button id="go_search">Pick</button>
+    <button id="make">Drop</button>
+    <button id="introduction">使い方</button>
+
+    <div id="window_intro">
+        <img src="../img/icon_close.png" alt="" id="closei">
+        <div id="intro_wrap">
+        <h1>使い方</h1>
+        <h2>音楽を聞く</h2>
+        <p>地図上の赤いピンをクリックしてみよう</p>
+        <img src="../img/intro01.png" alt="" class="introimg">
+        <br>
+        <h2>音楽をDrop(共有)する</h2>
+        <p>Youtubeから共有用のコードをコピーしてこよう</p>
+        <img src="../img/intro04.png" alt="" class="introimg">
+        
+        <img src="../img/intro05.png" alt="" class="introimg">
+        <img src="../img/intro06.png" alt="" class="introimg">
+        
+        <p>「Drop」ボタンをクリック</p>
+        <img src="../img/introimg08.png" alt="" class="introimg">
+        <p> Dropする音楽の情報を書こう
+        </p>
+        <img src="../img/intro02.png" alt="" class="introimg">
+        
+        <p>地図上でDropしたい所をクリック♪</p>
+        <img src="../img/intro07.png" alt="" class="introimg">
+        
+        <h2>音楽をPick(検索)する</h2>
+        <p>「Pick」ボタンをクリック</p>
+        <img src="../img/introimg09.png" alt="" class="introimg">
+        <p>絞り込みたいタグを選択<br>
+        「Pick♪」ボタンをクリック</p>
+        <img src="../img/intro03.png" alt="" class="introimg">
+
+        <p>近くにDropしてある音楽から順に表示されます</p>
+        <img src="../img/intro10.png" alt="" class="introimg">
+
+        <h2 style="color:rgb(62, 198, 243);">さあ、今すぐSounDropしてみよう♪</h2>
+        
+        </div>
+
+    </div>
+
+    
+    <div class="window" id="window_s">
+        <p id="search_text">音楽を絞り込む</p>
+        <div id="search_wrap">
+            <p>３つまでタグを選択できます</p>
+            <img src="../img/icon_close.png" alt="" id="closes">
+            <ul class="tag_list">
+                <li class="tags">全て</li>
+                <li class="tags" id="pop">ポップ</li>
+                <li class="tags" id="anime">アニメ</li>
+                <li class="tags" id="rock">ロック</li>
+                <li class="tags" id="hiphop">ヒップホップ</li>
+                <li class="tags" id="jazz">ジャズ</li>
+                <li class="tags" id="classic">クラシック</li>
+                <li class="tags" id="morning">朝</li>
+                <li class="tags" id="noon">昼</li>
+                <li class="tags" id="night">夜</li>
+                <li class="tags" id="midnight">夜中</li>
+                <li class="tags" id="fun">楽しい</li>
+                <li class="tags" id="cool">かっこいい</li>
+                <li class="tags" id="hard">激しい</li>
+                <li class="tags" id="relax">リラックス</li>
+                <li class="tags" id="sad">悲しい</li>
+                <li class="tags" id="dance">ダンス</li>
+                <li class="tags" id="exercise">運動</li>
+                <li class="tags" id="study">勉強</li>
+                <li class="tags" id="cafe">カフェ</li>
+                <li class="tags" id="favorite">お気に入り</li>
+
+            </ul>
+        </div>
+        
+        <button id="search">Pick ♪</button>
+    </div>
+    <div id="overlay"></div>
+
+    <div class="window" id="loading">
+        <div id="load_wrap">
+            Loading...
+        </div>
+    </div>
+
+    <div class="window" id="window">
+        <img src="../img/icon_close.png" alt="" id="close" class="close">
+        <p>音楽の共有コード</p>
+        <input type="text" id="music_url">
+        <p>音楽タイトル</p>
+        <input type="text" id="music_title">
+        <p>音楽につけるタグ</p>
+    <div id="search_wrap2">
+    <ul>
+    <li class="tag" id="pop">ポップ</li>
+    <li class="tag" id="anime">アニメ</li>
+    <li class="tag" id="rock">ロック</li>
+    <li class="tag" id="hiphop">ヒップホップ</li>
+    <li class="tag" id="jazz">ジャズ</li>
+    <li class="tag" id="classic">クラシック</li>
+    <li class="tag" id="morning">朝</li>
+    <li class="tag" id="noon">昼</li>
+    <li class="tag" id="night">夜</li>
+    <li class="tag" id="midnight">夜中</li>
+    <li class="tag" id="fun">楽しい</li>
+    <li class="tag" id="cool">かっこいい</li>
+    <li class="tag" id="hard">激しい</li>
+    <li class="tag" id="relax">リラックス</li>
+    <li class="tag" id="sad">悲しい</li>
+    <li class="tag" id="dance">ダンス</li>
+    <li class="tag" id="exercise">運動</li>
+    <li class="tag" id="study">勉強</li>
+    <li class="tag" id="cafe">カフェ</li>
+    <li class="tag" id="favorite">お気に入り</li>
+    </ul>
+    </div>
+        <div class="button_wrap">
+            <button class="buttons" id="ok">好きな所にDrop ♪</button>
+            <button class="buttons" id="position">現在地にDrop ♪</button>
+        </div>
+    </div>
+
+    <div id="myMap" style="width:80vw;height:85vh;"></div>
+    <div id="slide_wrap">
+        <img src="../img/icon_close.png" alt="" class="close" id="close_slide">
+        <div id="slide">
+        </div>
+<div class="button_wrap" id="movie_button">
+        <button class="buttons" id="back">前の音楽へ</button>
+        <button class="buttons" id="next">次の音楽へ</button>
+        </div>
+        <!-- <button id="close_slide">スライド画面閉じる</button> -->
+    </div>
+
+    <!-- MAP[END] -->
+
+
+    <script
+        src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=YourKey'
+        async defer></script>
+    <script src="../js/BmapQuery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyDfmNQAHcxNr6QkqN3llQb2CHeSRNa2ax4",
+        authDomain: "musicdrop-24fa1.firebaseapp.com",
+        databaseURL: "https://musicdrop-24fa1-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "musicdrop-24fa1",
+        storageBucket: "musicdrop-24fa1.appspot.com",
+        messagingSenderId: "1066428865303",
+        appId: "1:1066428865303:web:1897c6e8c3000069a53552"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+        // Your web app's Firebase configuration
+        // var firebaseConfig = {
+        //     apiKey: "AIzaSyDfmNQAHcxNr6QkqN3llQb2CHeSRNa2ax4",
+        //     authDomain: "musicdrop-24fa1.firebaseapp.com",
+        //     databaseURL: "https://musicdrop-24fa1-default-rtdb.asia-southeast1.firebasedatabase.app",
+        //     projectId: "musicdrop-24fa1",
+        //     storageBucket: "musicdrop-24fa1.appspot.com",
+        //     messagingSenderId: "1066428865303",
+        //     appId: "1:1066428865303:web:1897c6e8c3000069a53552"
+        // };
+
+        // // Initialize Firebase
+        // firebase.initializeApp(firebaseConfig);
+        const ref = firebase.database().ref();
+
+
+        $("#close").on("click", function(){
+            $("#window").fadeOut();
+            $("#overlay").fadeOut();
+        })
+
+        $("#closes").on("click", function(){
+            $("#window_s").fadeOut();
+            $("#overlay").fadeOut();
+        })
+
+        $("#overlay").hide();
+        $("#window_intro").hide();
+
+        $("#introduction").on("click", function(){
+            $("#window_intro").fadeIn();
+        })
+
+        $("#closei").on("click", function(){
+            $("#window_intro").fadeOut();
+        })
+
+        //init
+        function GetMap() {
+
+
+            const options = []; //optionsは動画データが入る配列
+            let len = options.length; 
+
+
+
+
+
+            //------------------------------------------------------------------------
+            //1. Instance
+            //------------------------------------------------------------------------
+            const map = new Bmap("#myMap");
+            //------------------------------------------------------------------------
+            //2. Display Map
+            //------------------------------------------------------------------------
+            map.startMap(35.66935687940433, 139.70249218547292, "load", 16);
+            // let options = [];
+
+            $("#window").hide();
+            $("#window_s").hide();
+            $("#loading").hide();
+            $("#slide_wrap").hide();
+
+            $("#make").on("click", function () {//「作成ボタン」押してピンを立てる
+                $(".tag").css("background-color", "white");
+                $("#window").fadeIn();//#windowに入力フォームがある
+                $("#overlay").fadeIn();
+                let iframe = ""; //Get URL code
+                let tag = [];
+                let lat = "";
+                let lon = "";//とりあえずの変数定義
+
+
+                options[len] = {//lenにすることで勝手に新しい番号の配列になる
+                    lat: lat, //click latitude
+                    lon: lon, //click longitude
+                    title: "Music",
+                    pinColor: "#ff0000",
+                    height: 400,
+                    width: 600,
+                    description: iframe, //iframe = music url code
+                    show: false,
+                    tag: tag
+                }
+
+                
+
+                
+
+                map.onGeocode("click", function (data) {
+                    // const ref = firebase.database().ref();
+                    // console.log(data);                   //Get Geocode ObjectData
+                    options[len].lat = data.location.latitude;  //Get latitude
+                    options[len].lon = data.location.longitude; //Get longitude    
+                    map.infoboxLayers(options, true); //show pins
+                    ref.push(options[len]); //insert it into options array                                  
+                });
+
+
+                $("#position").on("click", function () {
+                    options[len].description = $("#music_url").val(); //Get URL code
+                    options[len].title = $("#music_title").val(); //Get text
+                    if (options[len].description == "") {
+                        alert("動画のURLを入力してください！");
+                    }
+                    else {
+                        $("#music_url").val(""); //make text empty
+                        $("#music_title").val(""); //make text empty
+                        $("#window").fadeOut();
+                        $("#overlay").fadeOut();
+                        console.log(options[len])
+                    }
+
+                    map.geolocation(function (data) {
+                        //location
+                        options[len].lat = data.coords.latitude;
+                        options[len].lon = data.coords.longitude;
+                        map.infoboxLayers(options, true); //show pins
+                        ref.push(options[len]); //insert it into options array  
+                        
+
+
+                    });
+
+                });
+
+
+            });
+
+            $(".tag").on("click", function () {
+                options[len].tag.push(get_tag(this));
+                console.log(options[len]);
+                $(this).css("background-color","orange");
+                
+            })
+
+            $("#ok").on("click", function () {
+                options[len].description = $("#music_url").val();//Get URL code
+                options[len].title = $("#music_title").val(); //Get text
+                if (options[len].description == "") {
+                    alert("動画のURLを入力してください！");
+                }
+                else {
+                    $("#music_url").val(""); //make text empty
+                    $("#music_title").val(""); //make text empty
+                    $("#window").fadeOut();
+                    $("#overlay").fadeOut();
+                    console.log(options[len]);
+                    $(".tag").css("background-color", "white");
+                }
+            });
+
+
+
+            
+
+
+            ref.on("child_added", function (data) { //get from firebase
+                const v = data.val();
+            
+
+                options[len] = { //get each value
+                    lat: v.lat,
+                    lon: v.lon,
+                    title: v.title,
+                    pinColor: v.pinColor,
+                    height: 400,
+                    width: 600,
+                    description: v.description,
+                    show: false,
+                    tag: v.tag
+                }
+                map.infoboxLayers(options, true); //make pins shown
+                len++; //it's the same as "for" script
+                console.log("ok");
+            });
+
+           
+
+            function get_tag(item) {//タグを取得する関数
+                let tag = $(item).attr("id");
+                return tag
+            }
+
+
+
+
+
+           
+
+
+            
+            let array = [];
+            let n = 0;
+
+            $(".tags").on("click", function () {
+                let array_s = [];
+                array_s.push(get_tag(this));
+                console.log(array_s);
+                $(this).css("background-color", "orange");
+                $("#search").hide();
+                // $(".tags").hide();
+    
+
+
+
+
+
+
+                map.geolocation(function (position) {
+                    console.log("位置情報取得開始")
+                    let coords = position.coords;
+
+                    let pos_lat = coords.latitude;
+                    let pos_lon = coords.longitude;
+
+
+
+
+
+                    for (let i = 0; i < options.length; i++) {
+                        let lat1 = options[i].lat;
+                        let lon1 = options[i].lon;
+                        let tag1 = [];
+                        let description1 = options[i].description;
+                        if (options[i].tag != undefined) {
+                            tag1 = options[i].tag
+                        }
+
+                        // console.log("緯度は" + lat1);
+                        // console.log("中身は" + description1);
+                        let distance = getDistance(lat1, lon1, pos_lat, pos_lon, 0)
+
+                        array[i] = {//make new array
+                            distance: distance,
+                            description1: description1,
+                            tag: tag1
+                        }
+                        console.log(array[i])
+                        console.log(array_s);
+
+                        if (array_s != "") {//何もタグに入れていないと全て表示
+
+
+
+                            if (array[i].tag == "") {//もしもタグが設定されていなければ検索から外す
+
+                                array[i].distance = "";///タグが一致しないとdescriptionが消去される
+                                console.log("delete1");
+                                console.log(array[i]);
+                            }
+                            else {
+                                let c = 0;
+
+
+                                // for (let j = 0; j < array[i].tag.length; j++) {//タグが一致しないと検索から外す
+                                for (let j = 0; j < array[i].tag.length; j++) {//タグが一致しないと検索から外す
+                                    if (array[i].tag[j] == array_s[0] || array[i].tag[j] == array_s[1] || array[i].tag[j] == array_s[2]) {
+                                        
+                                        c ++;
+                                        console.log("c:" + c)
+                                        // console.log(array[i].tag[j]);
+                                        // array[i].distance = "";//タグが一致しないとdescriptionが消去される
+                                        // console.log("delete");
+                                    }
+                                    console.log(array[i]);
+                                };
+                                if(c == 0){
+                                    array[i].distance = "";//タグが一致しないとdescriptionが消去される
+                                    console.log("delete");
+                                }
+                                
+                            }
+
+                            if (array[i].distance == "") {
+                                delete array[i];
+                            }
+                        }
+
+
+                    };
+
+                    array.sort(function (a, b) {
+                        if (a.distance > b.distance) {
+                            return 1;
+                        } else {
+                            return -1;
+                        }
+                        console.log(array);
+                    });
+                    $("#search").fadeIn();
+                    $(".tags").fadeIn();
+                });
+            })
+
+            $("#go_search").on("click", function () {
+                $(".tags").css("background-color", "white");
+                $("#loading").fadeIn();
+                $("#overlay").fadeIn();
+
+                let array_s = [];
+                $("#search").hide();
+                $(".tags").hide();
+
+                
+
+
+
+
+                map.geolocation(function (position) {
+                    console.log("位置情報取得開始")
+                    let coords = position.coords;
+
+                    let pos_lat = coords.latitude;
+                    let pos_lon = coords.longitude;
+
+
+
+
+
+                    for (let i = 0; i < options.length; i++) {
+                        let lat1 = options[i].lat;
+                        let lon1 = options[i].lon;
+                        let tag1 = [];
+                        let description1 = options[i].description;
+                        if (options[i].tag != undefined) {
+                            tag1 = options[i].tag
+                        }
+
+                        // console.log("緯度は" + lat1);
+                        // console.log("中身は" + description1);
+                        let distance = getDistance(lat1, lon1, pos_lat, pos_lon, 0)
+
+                        array[i] = {//make new array
+                            distance: distance,
+                            description1: description1,
+                            tag: tag1
+                        }
+                        console.log(array[i])
+                        console.log(array_s);
+
+                        if (array_s != "") {//何もタグに入れていないと全て表示
+
+
+
+                            if (array[i].tag == "") {//もしもタグが設定されていなければ検索から外す
+
+                                array[i].distance = "";///タグが一致しないとdescriptionが消去される
+                                console.log("delete1");
+                                console.log(array[i]);
+                            }
+                            else {
+
+
+
+                                // for (let j = 0; j < array[i].tag.length; j++) {//タグが一致しないと検索から外す
+                                for (let j = 0; j < array[i].tag.length; j++) {//タグが一致しないと検索から外す
+                                    if (array[i].tag[j] != array_s[0]) {
+                                        array[i].distance = "";//タグが一致しないとdescriptionが消去される
+                                        console.log("delete");
+                                    }
+                                    console.log(array[i])
+                                };
+                            }
+
+                            if (array[i].distance == "") {
+                                delete array[i];
+                            }
+                        }
+
+
+                    };
+
+                    array.sort(function (a, b) {
+                        if (a.distance > b.distance) {
+                            return 1;
+                        } else {
+                            return -1;
+                        }
+                        console.log(array);
+                    });
+                    $("#loading").fadeOut();
+                    $("#window_s").fadeIn();
+                    $("#search").fadeIn();
+                    $(".tags").fadeIn();
+                });
+            });
+
+            $("#search").on("click", function () {
+                $("#window_s").fadeOut();
+                $("#slide_wrap").fadeIn();
+                console.log("繰り返し？？")
+                console.log(array);
+
+                n = 0
+
+                // console.log(array[n].description1);
+                let text = array[n].description1;
+                $("#slide").html(text);
+                console.log(n);
+                console.log(array);
+            });
+
+
+            $("#next").on("click", function () {
+            
+                let m = n + 1
+            
+                if (array[m] == undefined) {
+                    alert("もうありません");
+                }
+                else {
+                    if (n == array.length - 1) {
+                        alert("もうありません")
+                    }
+                    else {
+                        n++;
+                        let text = array[n].description1;
+                        $("#slide").html(text);
+                    }
+                }
+                console.log("今の配列" + n);
+
+
+            })
+
+            $("#back").on("click", function () {
+
+                 let m = n - 1
+                
+                if (array[m] == undefined) {
+                    alert("もうありません");
+                }
+                else {
+                    if (n == 0) {
+                        alert("もうありません")
+                    }
+                    else {
+                        n--;
+                        let text = array[n].description1;
+                        $("#slide").html(text);
+                    }
+                }
+                console.log("今の配列" + n);
+
+              
+
+            });
+            $("#close_slide").on("click", function () {
+                $("#slide_wrap").fadeOut();
+                $("#overlay").fadeOut();
+                console.log(array);                
+            });
+
+
+
+
+
+
+
+            /**
+         * 2点間の緯度経度から距離を取得
+         * 測地線航海算法を使用して距離を算出する。
+         *  http://hamasyou.com/blog/2010/09/07/post-2/
+        //  * float 緯度1
+        //  *  float 経度2
+        //  * float 緯度2
+        //  *  float 経度2
+        //  *  小数点以下の桁数(べき乗で算出精度を指定)
+        //  */
+            function getDistance(lat1, lng1, lat2, lng2, precision) {
+                var distance = 0;
+                if ((Math.abs(lat1 - lat2) < 0.00001) && (Math.abs(lng1 - lng2) < 0.00001)) {
+                    distance = 0;
+                } else {
+                    lat1 = lat1 * Math.PI / 180;
+                    lng1 = lng1 * Math.PI / 180;
+                    lat2 = lat2 * Math.PI / 180;
+                    lng2 = lng2 * Math.PI / 180;
+
+                    var A = 6378140;
+                    var B = 6356755;
+                    var F = (A - B) / A;
+
+                    var P1 = Math.atan((B / A) * Math.tan(lat1));
+                    var P2 = Math.atan((B / A) * Math.tan(lat2));
+
+                    var X = Math.acos(Math.sin(P1) * Math.sin(P2) + Math.cos(P1) * Math.cos(P2) * Math.cos(lng1 - lng2));
+                    var L = (F / 8) * ((Math.sin(X) - X) * Math.pow((Math.sin(P1) + Math.sin(P2)), 2) / Math.pow(Math.cos(X / 2), 2) - (Math.sin(X) - X) * Math.pow(Math.sin(P1) - Math.sin(P2), 2) / Math.pow(Math.sin(X), 2));
+
+                    distance = A * (X + L);
+                    var decimal_no = Math.pow(10, precision);
+                    distance = Math.round(decimal_no * distance / 1) / decimal_no;
+                }
+                return distance;
+            }
+
+       
+
+            map.infoboxLayers(options, true);
+
+
+        }
+    </script>
+</body>
+
+</html>
